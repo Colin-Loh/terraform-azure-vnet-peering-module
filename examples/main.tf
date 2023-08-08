@@ -19,7 +19,7 @@ module "network" {
 }
 
 module "peering" {
-    source = "./modules/peering"
+    source = "../"
     peering = var.peering
     resource_group_name = azurerm_resource_group.this.name
     vnet_1_id = module.network.vnet_ids[var.peering.vnet_1_name]
