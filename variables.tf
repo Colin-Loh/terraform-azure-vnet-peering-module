@@ -1,26 +1,9 @@
+#Module      : Virtual Network Peering
+#Description : This wil automatically take care of the peering between the two virtual networks.
+
 variable "resource_group_name" {
   type = string
-}
-
-variable "resource_group_location" {
-  type = string
-}
-
-variable "virtual_networks" {
-  type = map(object({
-    name = string
-    address_space = list(string)
-
-    subnets = list(object({
-      subnet_name    = string
-      subnet_address = list(string)
-
-      network_interfaces = list(object({
-        network_interface_name = string
-        ip_configuration_name = string
-      }))
-    }))
-  }))
+  description = "value for resource group name"
 }
 
 variable "peering" {
@@ -42,4 +25,17 @@ variable "peering" {
       use_remote_gateways_vnet2 = bool
     })
   })
+
+  description = "values for peering"
+}
+
+
+variable "vnet_2_id" {
+  type        = string
+  description = "value of the remote virtual network id"
+}
+
+variable "vnet_1_id" {
+  type        = string
+  description = "value of the remote virtual network id"
 }

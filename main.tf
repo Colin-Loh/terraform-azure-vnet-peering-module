@@ -1,19 +1,24 @@
-resource "azurerm_resource_group" "this" {
-    name = var.resource_group_name
-    location = var.resource_group_location
+resource "azurerm_virtual_network_peering" "peering" {
+  count                        = var.peering.enabled_peering ? 1 : 0
+  name                         = var.peering.peer_front.name
+  resource_group_name          = var.resource_group_name
+  virtual_network_name         = var.peering.vnet_1_name
+  remote_virtual_network_id    = var.vnet_2_id
+  allow_virtual_network_access = var.peering.allow_virtual_network_access
+  allow_forwarded_traffic      = var.peering.peer_front.allow_forwarded_traffic_vnet1
+  allow_gateway_transit        = var.peering.peer_front.allow_gateway_transit_vnet1
+  use_remote_gateways          = var.peering.peer_front.use_remote_gateways_vnet1
 }
 
-module "network" {
-    source = "./modules/network"
-    resource_group_name = azurerm_resource_group.this.name
-    resource_group_location = azurerm_resource_group.this.location
-    virtual_networks = var.virtual_networks
-}
 
-module "peering" {
-    source = "./modules/peering"
-    peering = var.peering
-    resource_group_name = azurerm_resource_group.this.name
-    vnet_1_id = module.network.vnet_ids[var.peering.vnet_1_name]
-    vnet_2_id = module.network.vnet_ids[var.peering.vnet_2_name]
+resource "azurerm_virtual_network_peering" "peering_back" {
+  count                        = var.peering.enabled_peering ? 1 : 0
+  name                         = var.peering.peer_back.name
+  resource_group_name          = var.resource_group_name
+  virtual_network_name         = var.peering.vnet_2_name
+  remote_virtual_network_id    = var.vnet_1_id
+  allow_virtual_network_access = var.peering.allow_virtual_network_access
+  allow_forwarded_traffic      = var.peering.peer_back.allow_forwarded_traffic_vnet2
+  allow_gateway_transit        = var.peering.peer_back.allow_gateway_transit_vnet2
+  use_remote_gateways          = var.peering.peer_back.use_remote_gateways_vnet2
 }

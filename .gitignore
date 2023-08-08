@@ -3,6 +3,8 @@
 
 #Ignore old directory
 old/
+.old/
+
 
 # .tfstate files
 *.tfstate
