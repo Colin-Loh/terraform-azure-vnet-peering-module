@@ -24,6 +24,6 @@ output:
   file: README.md
   mode: inject
   template: |-
-      <!-- TF_DOCS_CONTENT -->
+      <!-- START_TF_DOCS_CONTENT -->
       {{ .Content }}
-      <!-- TF_DOCS_CONTENT -->
+      <!-- END_TF_DOCS_CONTENT -->
