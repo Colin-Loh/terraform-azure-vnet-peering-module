@@ -8,7 +8,6 @@ variable "peering" {
       use_remote_gateways     = bool
     }))
   })
-
   description = <<DESC
     (Required) Configuration for virtual network peering.
     Properties:
