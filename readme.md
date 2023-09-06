@@ -45,7 +45,7 @@ data "azurerm_resource_group" "this" {
 }
 
 module "peering" {
-  source = "../"
+  source = "../.."
 
   resource_group_name = data.azurerm_resource_group.this.name
 
