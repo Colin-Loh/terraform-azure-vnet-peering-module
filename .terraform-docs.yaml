@@ -8,18 +8,12 @@ content: |-
 
   {{ .Inputs }}
 
-  ## Usage
-  Basic usage of this module is as follows:
+  ## Example(s)
 
   ```hcl
   {{ include "./example/basic/main.tf"}}
   ```
 
-  ## Example(s)
-
-  ```hcl
-  {{ include "./main.tf"}}
-  ```
 output:
   file: README.md
   mode: inject
