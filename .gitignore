@@ -5,7 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# old files
 examples
+.examples
 
 # Crash log files
 crash.log
