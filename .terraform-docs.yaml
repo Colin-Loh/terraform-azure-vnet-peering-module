@@ -12,7 +12,7 @@ content: |-
   Basic usage of this module is as follows:
 
   ```hcl
-  {{ include "./examples/main.tf"}}
+  {{ include "./example/basic/main.tf"}}
   ```
 
   ## Example(s)
